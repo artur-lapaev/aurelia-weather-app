@@ -5,7 +5,7 @@
     <compose view-model="./add-city/add-city"></compose>
   </div>
   <div class="au-main__list">
-    <div class="list__item" repeat.for="city of cities">
+    <div class="list__item item-weather ${city.class}" repeat.for="city of cities">
       <div class="item">
         <div class="item__main-information">
           <span class="item__name">${city.name}</span>
