@@ -16,7 +16,6 @@ export class WeatherApi {
         .then(response => response.json())
         .then(data => data)
         .catch(error => {
-          // eslint-disable-next-line no-console
           console.error('Error city not found.');
           return [];
         });
@@ -34,5 +33,10 @@ export class WeatherApi {
       });
 
       return weather;
+    }
+
+    getModeDay(mode) {
+      const day = mode[mode.length - 1];
+      return day === 'n' ? 'night' : 'day';
     }
 }

@@ -18,6 +18,10 @@ export class AddCity {
   }
 
   weatherDataChanged(weatherData) {
-    this.ea.publish('cityAdd', this.weatherData);
+    if (weatherData.message) {
+      debugger
+    } else {
+      this.ea.publish('cityAdd', this.weatherData);
+    }
   }
 }
