@@ -1,0 +1,39 @@
+.au-add-city__input {
+    display: flex;
+    height: 40px;
+    margin-bottom: 20px;
+
+    .add-city__input {
+        width: 200px;
+        padding-left: 15px;
+        border: 0;
+        border-bottom: 2px solid #bc8f8f;
+        outline: none;
+        background-color: transparent;
+        transition: 0.2s border-bottom ease-in;        
+        box-sizing: border-box;
+    }
+
+    .add-city__input:focus {
+        border-bottom: 2px solid #000000;
+    }
+    
+    .add-city__input::placeholder {
+        font-size: 1em;
+        opacity: 1;
+        transition: 0.2s all ease-in;
+    }
+
+    .add-city__input:focus::placeholder {
+        opacity: 0.4;
+        font-size: 0.7em;
+    }
+
+    .add-city__button {
+        border: 0;
+        width: 120px;
+        margin-left: 15px;
+        cursor: pointer;        
+        background-color: #afea9c;
+    }
+}

@@ -1,0 +1,53 @@
+.au-main__list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .list__item {
+        display: flex;
+        height: 70px;
+        width: 100%;
+        background-color: rgb(247, 204, 194);
+        font-size: 1.2em;
+        font-weight: 200;
+        padding-left: 10px;
+        border-bottom: 1px solid rgba($color: #000000, $alpha: .3);
+        box-sizing: border-box;
+
+        .item {
+            display: flex;            
+            align-items: center;
+            height: inherit;
+
+            .item__main-information {
+                display: flex;
+                flex-direction: column;
+                margin-right: 10px;
+
+                .item__weather-type {
+                    padding-left: 2px;
+                    padding-top: 3px;
+                    font-size: 0.7em;
+                }
+            }
+
+            .item__weather-temperature {                
+               
+                .item__temperature-degree {
+                    font-weight: 400;
+                 }
+            }
+        }
+    }
+
+    .list__item:first-child {
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+
+    .list__item:last-child {
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+}

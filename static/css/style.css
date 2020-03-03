@@ -1,0 +1,16 @@
+html, body .au-target  {
+    height: 100%;
+}
+
+ body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'Lato';
+    font-weight: 400;
+    background-color: #fbfbfb;
+}
+
+*::selection {
+    background-color: black;
+}

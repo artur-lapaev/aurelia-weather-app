@@ -1,0 +1,21 @@
+<template>
+  <require from="./weather-main.scss"></require>
+
+  <div class="au-add-city">
+    <compose view-model="./add-city/add-city"></compose>
+  </div>
+  <div class="au-main__list">
+    <div class="list__item" repeat.for="city of cities">
+      <div class="item">
+        <div class="item__main-information">
+          <span class="item__name">${city.name}</span>
+          <span class="item__weather-type">${city.weather}</span>
+        </div>
+        <div class="item__weather-temperature">
+          <span class="item__temperature-degree">${city.temperature}</span>
+          <span class="item__icon"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
