@@ -7,6 +7,7 @@ import {PLATFORM} from 'aurelia-pal';
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
+    .plugin(PLATFORM.moduleName('aurelia-materialize-bridge'), b => b.useAll())
     .feature(PLATFORM.moduleName('resources/index'));
 
   aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');

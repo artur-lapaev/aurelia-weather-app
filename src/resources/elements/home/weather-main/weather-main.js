@@ -1,10 +1,13 @@
 import { WeatherApi } from '../../../services/weather-api';
-import { inject, bindable } from 'aurelia-framework';
+import { inject } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
 
 @inject(WeatherApi, EventAggregator)
 export class MarketMain {
-    @bindable cities = []
+    cities = [];
+    activePage = 1;
+    overallPageLinks = 1;
+    visiblePageLinks = '10';
 
     constructor(weatherApi, eventAggregator) {
       this.weatherApi = weatherApi;
@@ -21,7 +24,23 @@ export class MarketMain {
     created() {
       this.ea.subscribe('cityAdd', city => {
         this._addCity(city);
+        this._updatePageCounter();
       });
+    }
+
+
+    attached() {
+      this._updatePageCounter();
+    }
+
+    onPageChanged(event) {
+      this.activePage = event.detail;
+    }
+
+    _updatePageCounter() {
+      setTimeout(() => {
+        this.overallPageLinks = Math.ceil(this.cities.length / +this.visiblePageLinks);
+      }, 100);
     }
 
     _addCity(city) {
@@ -29,41 +48,13 @@ export class MarketMain {
       const mode = this.weatherApi.getModeDay(city.weather[0].icon);
       this.cities.push({
         name: city.name,
+        country: city.sys.country,
         weather: city.weather[0].main,
         temperature: city.main.temp > 0 ? `+${Math.round(city.main.temp)}` : Math.round(city.main.temp),
         icon: icon,
         mode: mode,
-        class: this._getCssClass(mode, city.weather[0].main)
+        class: ''
       });
-    }
-
-    _getCssClass(mode, weather) {
-      let cssClass = '';
-      switch (weather) {
-      case 'Clouds':
-        cssClass = `weather-cloud-${mode}`;
-        break;
-      case 'Clear':
-        cssClass = `weather-clear-${mode}`;
-        break;
-      case 'Rain':
-        cssClass = `weather-rain-${mode}`;
-        break;
-      case 'Thunderstorm':
-        cssClass = `weather-thunderstorm-${mode}`;
-        break;
-      case 'Snow':
-        cssClass = `weather-snow-${mode}`;
-        break;
-      case 'Fog':
-      case 'Mist':
-        cssClass = `weather-fog-${mode}`;
-        break;
-      default:
-        break;
-      }
-
-      return cssClass;
     }
 }
 

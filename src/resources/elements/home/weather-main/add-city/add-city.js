@@ -19,7 +19,8 @@ export class AddCity {
 
   weatherDataChanged(weatherData) {
     if (weatherData.message) {
-      debugger
+      // eslint-disable-next-line no-debugger
+      debugger;
     } else {
       this.ea.publish('cityAdd', this.weatherData);
     }
