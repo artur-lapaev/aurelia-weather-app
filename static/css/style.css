@@ -13,4 +13,5 @@ html, body .au-target  {
 
 *::selection {
     background-color: black;
+    color: white;
 }

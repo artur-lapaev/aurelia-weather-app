@@ -49,6 +49,12 @@ export class MarketMain {
       case 'Rain':
         cssClass = `weather-rain-${mode}`;
         break;
+      case 'Thunderstorm':
+        cssClass = `weather-thunderstorm-${mode}`;
+        break;
+      case 'Snow':
+        cssClass = `weather-snow-${mode}`;
+        break;
       case 'Fog':
       case 'Mist':
         cssClass = `weather-fog-${mode}`;
