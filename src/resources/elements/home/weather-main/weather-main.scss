@@ -19,7 +19,8 @@
         box-sizing: border-box;        
         transform: scale(1);
         transition: 0.3s transform ease-in-out;
-        cursor: pointer;
+        cursor: pointer;        
+        position: relative;
 
         &:hover {
             transform: scale(1.02);
@@ -30,7 +31,7 @@
             align-items: center;
             height: inherit;
             color: white;
-            
+
             .item__main-information {
                 display: flex;
                 flex-direction: column;
@@ -64,6 +65,11 @@
                     width: 50px;
                     height: 50px;
                 }
+            }
+
+            .item__time-city {
+                position: absolute;
+                right: 20px;
             }
         }
     }

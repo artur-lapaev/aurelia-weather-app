@@ -3,7 +3,8 @@ export class App {
   configureRouter(config, router) {
     config.title = 'Weather';
     config.map([
-      { route: '', name: 'home', moduleId: PLATFORM.moduleName('./resources/elements/home/home'), title: 'Home' }
+      { route: '', name: 'home', moduleId: PLATFORM.moduleName('./resources/elements/home/home'), title: 'Home' },
+      { route: '/:id', name: 'pagination', moduleId: PLATFORM.moduleName('./resources/elements/home/home'), title: 'Home' }
     ]);
 
     this.router = router;

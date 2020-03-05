@@ -2,6 +2,7 @@
   <require from="./weather-main.scss"></require>
   <require from="./view-pages-pagination"></require>
   <require from="./set-class-by-weather"></require>
+  <require from="./parse-time"></require>
 
   <div class="au-add-city">
     <compose view-model="./add-city/add-city"></compose>
@@ -17,6 +18,9 @@
           <div class="item__weather-temperature">
             <span class="item__temperature-degree">${city.temperature}</span>
             <img class="item__icon" src.bind="city.icon"></img>
+          </div>
+          <div class="item__time-city">
+            <span class="time" ref="time">${city.timeZone | time:$this}</span>
           </div>
         </div>
       </div>
