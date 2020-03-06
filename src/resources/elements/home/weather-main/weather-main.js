@@ -9,6 +9,7 @@ export class MarketMain {
   activePage = 1;
   overallPageLinks = 1;
   visiblePageLinks = '10';
+  weather = {};
 
   constructor(weatherApi, eventAggregator, router) {
     this.weatherApi = weatherApi;
@@ -46,17 +47,38 @@ export class MarketMain {
     this._updatePageCounter();
   }
 
+  setActiveWeather(indx) {
+    const isActive = this.cities[indx].isActive;
+
+    this._unsetAllActiveElement();
+
+    if (isActive) {
+      return this.cities[indx].isActive = false;
+    }
+    this.cities[indx].isActive = true;
+
+    this.sendWeatherInformation(this.cities[indx].weather, this.cities[indx].mode);
+  }
+
+  sendWeatherInformation(weather, mode) {
+    this.weather = { weather, mode };
+
+    this.ea.publish('weatherData', this.weather);
+  }
+
   onPageChanged(event) {
     this.activePage = event.detail;
     this.router.navigateToRoute('pagination', { id: event.detail });
+  }
+
+  _unsetAllActiveElement() {
+    this.cities.forEach(element => element.isActive = false);
   }
 
   _updatePageCounter() {
     setTimeout(() => {
       const maxPages = Math.ceil(this.cities.length / +this.visiblePageLinks);
       this.overallPageLinks = maxPages ? maxPages : 1;
-      // eslint-disable-next-line no-console
-      console.log('PageLinks: ', this.overallPageLinks);
     }, 100);
   }
 
@@ -72,7 +94,8 @@ export class MarketMain {
       icon: icon,
       mode: mode,
       timeZone: city.timezone,
-      class: ''
+      class: '',
+      isActive: false
     });
   }
 }

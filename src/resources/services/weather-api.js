@@ -5,7 +5,7 @@ import { inject } from 'aurelia-framework';
 export class WeatherApi {
     BASE_API_URL = 'http://api.openweathermap.org';
     API_KEY = 'b802e80197c2f4d8e82b8d0b2b40574b';
-    INIT_CITIES = ['London', 'Minsk', 'Paris', 'New York'];
+    INIT_CITIES = ['London', 'Minsk', 'Paris', 'New York', 'Sydney', 'Tokyo'];
 
     constructor(http) {
       this.http = http;

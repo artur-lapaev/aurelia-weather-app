@@ -32,17 +32,13 @@
     }
 
     .add-city__button {
-        border: 0;
         width: 120px;
         margin-left: 15px;
         cursor: pointer;        
-        background-color: #afea9c;        
-        transition: 0.2s all;
+        background-color: #7bda5c;
 
         &:focus {            
-        outline: 1px solid rgba(0, 0, 0, 0.03);
-        border-radius: 2px;
-        box-shadow: 0px 0px 3px 0px black;
+            background-color: #89c475;
         }
     }
 }

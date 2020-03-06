@@ -2,7 +2,8 @@
 // If you don't use async/await, you can remove regenerator-runtime.
 import 'regenerator-runtime/runtime';
 import * as environment from '../config/environment.json';
-import {PLATFORM} from 'aurelia-pal';
+import { PLATFORM } from 'aurelia-pal';
+import 'materialize-css';
 
 export function configure(aurelia) {
   aurelia.use

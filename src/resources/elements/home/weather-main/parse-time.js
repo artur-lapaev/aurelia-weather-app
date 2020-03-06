@@ -3,7 +3,6 @@ export class TimeValueConverter {
     const sign = Math.sign(value);
     let time;
     let utc;
-
     if (value === 0) {
       time = this._setDate(0, sign);
     } else {
@@ -33,20 +32,21 @@ export class TimeValueConverter {
     if (utc < currentUTC || utc === 0) {
       const dif = currentUTC - utc;
       const hours = currentHours - dif;
-      return time = `${this._formatTime(hours)}:${currentMinutes}`;
+      return time = `${this._formatHoursTime(hours)}:${this._formatMinuteTime(currentMinutes)}`;
     }
 
     if (utc === currentUTC) {
-      return time = `${this._formatTime(currentHours)}:${this._formatTime(currentMinutes)}`;
+      return time = `${this._formatHoursTime(currentHours)}:${this._formatMinuteTime(currentMinutes)}`;
     }
 
     if (sign >= 0) {
-      currentHours = currentHours + utc;
+      const dif = utc - currentUTC;
+      currentHours = currentHours + dif;
     } else {
       currentHours = currentHours - utc;
     }
 
-    time = `${this._formatTime(currentHours)}:${this._formatTime(currentMinutes)}`;
+    time = `${this._formatHoursTime(currentHours)}:${this._formatMinuteTime(currentMinutes)}`;
     return time;
   }
 
@@ -54,10 +54,25 @@ export class TimeValueConverter {
     const posValue = Math.abs(timeZone);
     return posValue / 60;
   }
+  _formatHoursTime(time) {
+    if (time >= 24) {
+      const dif = time - 24;
 
-  _formatTime(time) {
+      if (time === 24) {
+        return '00';
+      }
+
+      return `0${dif}`;
+    }
     if (time < 10) {
-      return time = '0' + time;
+      return `0${time}`;
+    }
+    return time;
+  }
+
+  _formatMinuteTime(time) {
+    if (time < 10) {
+      return `0${time}`;
     }
     return time;
   }
@@ -80,6 +95,7 @@ export class TimeValueConverter {
         utc = value / 3600;
         time = this._setDate(utc, sign);
       }
+
       return elem.time.innerText = time;
     };
   }
